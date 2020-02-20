@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+{{article.title}}
+{% endblock %}
+
+{% block content %}
+<h1>{{article.title}}</h1>
+<img src="{{article.thumbnail.url}}"><br>
+
+Created by:
+{% for author in article.authors.all %}
+<a href="">{{author}}</a>,
+{% empty %}
+Unknown
+{% endfor %}<br>
+
+Related Tags:
+{% for tag in article.tags.all %}
+<a href="{% url 'tag_url' tag.id %}">{{tag}}</a>,
+{% empty %}
+None
+{% endfor %}<br>
+
+$content
+
+<hr>
+<h3>Got any queries? get it resolved <a href="{% url 'board_url' article.discussion_board.id %}">here</a>.</h3>
+{% endblock %}
